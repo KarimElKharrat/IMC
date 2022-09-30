@@ -1,16 +1,9 @@
 package dad.imc;
 
 import javafx.application.Application;
-import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleExpression;
-import javafx.beans.binding.IntegerExpression;
-import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -30,8 +23,6 @@ public class IMC extends Application {
 	private HBox alturaHBox;
 	private HBox imcHBox;
 	private VBox root;
-//	private IntegerProperty pesoIntegerProperty = new SimpleIntegerProperty();
-//	private IntegerProperty alturaIntegerProperty = new SimpleIntegerProperty();
 	private DoubleProperty peso = new SimpleDoubleProperty();
 	private DoubleProperty altura = new SimpleDoubleProperty();
 	private DoubleExpression imcDoubleExpression;

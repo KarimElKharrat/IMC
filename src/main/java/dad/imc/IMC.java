@@ -15,7 +15,7 @@ import javafx.util.converter.NumberStringConverter;
 
 public class IMC extends Application {
 
-	private Label resultado;
+	private Label imcResultado;
 	private Label imcLabel;
 	private TextField pesoTextField;
 	private TextField alturaTextField;
@@ -31,7 +31,7 @@ public class IMC extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		imcLabel = new Label();
-		resultado = new Label();
+		imcResultado = new Label();
 		
 		pesoTextField = new TextField();
 		alturaTextField = new TextField();
@@ -53,7 +53,7 @@ public class IMC extends Application {
 		
 		root = new VBox();
 		root.setAlignment(Pos.CENTER);
-		root.getChildren().addAll(pesoHBox, alturaHBox, imcHBox, resultado);
+		root.getChildren().addAll(pesoHBox, alturaHBox, imcHBox, imcResultado);
 		root.setFillWidth(false);
 		root.setSpacing(5);
 		
@@ -63,25 +63,26 @@ public class IMC extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		
-		
+		//bindear string a doubleProperty
 		pesoTextField.textProperty().bindBidirectional(peso, new NumberStringConverter());
 		alturaTextField.textProperty().bindBidirectional(altura, new NumberStringConverter());
-
+		
 		imcDoubleExpression = peso.divide((altura.divide(100)).multiply(altura.divide(100)));
 		imcDoubleExpression.addListener((o, ov, nv) -> onCambioExpression(nv));
+
 		imcLabel.textProperty().bind(imcDoubleExpression.asString("%.2f"));
 
 	}
 
 	private void onCambioExpression(Number nv) {
 		if(nv.doubleValue() < 18.5) {
-			resultado.setText("Bajo peso.");
+			imcResultado.setText("Bajo peso.");
 		} else if(nv.doubleValue() < 25) {
-			resultado.setText("Normal.");
+			imcResultado.setText("Normal.");
 		} else if(nv.doubleValue() < 30) {
-			resultado.setText("Sobrepeso.");
+			imcResultado.setText("Sobrepeso.");
 		} else {
-			resultado.setText("Obeso.");
+			imcResultado.setText("Obeso.");
 		}
 	}
 

@@ -57,10 +57,8 @@ public class IMC extends Application {
 		root.setFillWidth(false);
 		root.setSpacing(5);
 		
-		Scene scene = new Scene(root, 300, 250);
-		
 		primaryStage.setTitle("IMC");
-		primaryStage.setScene(scene);
+		primaryStage.setScene(new Scene(root, 300, 250));
 		primaryStage.show();
 		
 		//bindear string a doubleProperty
@@ -70,21 +68,20 @@ public class IMC extends Application {
 		DoubleExpression cmtom = altura.divide(100);
 		imcDoubleExpression = peso.divide(cmtom.multiply(cmtom));
 		imcDoubleExpression.addListener((o, ov, nv) -> onCambioExpression(nv));
-
+		
 		imcLabel.textProperty().bind(imcDoubleExpression.asString("%.2f"));
 
 	}
 
 	private void onCambioExpression(Number nv) {
-		if(nv.doubleValue() < 18.5) {
+		if(nv.doubleValue() < 18.5)
 			imcResultado.setText("Bajo peso.");
-		} else if(nv.doubleValue() < 25) {
+		else if(nv.doubleValue() < 25)
 			imcResultado.setText("Normal.");
-		} else if(nv.doubleValue() < 30) {
+		else if(nv.doubleValue() < 30)
 			imcResultado.setText("Sobrepeso.");
-		} else {
+		else
 			imcResultado.setText("Obeso.");
-		}
 	}
 
 	public static void main(String[] args) {

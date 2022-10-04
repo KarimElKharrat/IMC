@@ -67,7 +67,8 @@ public class IMC extends Application {
 		pesoTextField.textProperty().bindBidirectional(peso, new NumberStringConverter());
 		alturaTextField.textProperty().bindBidirectional(altura, new NumberStringConverter());
 		
-		imcDoubleExpression = peso.divide((altura.divide(100)).multiply(altura.divide(100)));
+		DoubleExpression cmtom = altura.divide(100);
+		imcDoubleExpression = peso.divide(cmtom.multiply(cmtom));
 		imcDoubleExpression.addListener((o, ov, nv) -> onCambioExpression(nv));
 
 		imcLabel.textProperty().bind(imcDoubleExpression.asString("%.2f"));
